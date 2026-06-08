@@ -1,0 +1,5 @@
+Python is a programming language used for AI and data science.
+FastAPI is a modern web framework for building APIs in Python.
+Machine learning allows computers to learn from data.
+Neural networks are used in deep learning models.
+Vector databases store embeddings for semantic search.
