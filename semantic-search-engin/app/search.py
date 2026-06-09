@@ -1,6 +1,6 @@
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
-
+import numpy as np
 model = SentenceTransformer(
     "all-MiniLM-L6-v2"
 )
@@ -12,20 +12,43 @@ documents = load_documents(
 )
 doc_embeddings = model.encode(documents)
 
-query = input("Search: ")
+while True:
 
-query_embedding = model.encode([query])
+    query = input("\nSearch (q=quit): ")
 
-scores = cosine_similarity(
-    query_embedding,
-    doc_embeddings
-)
+    if query.lower() == "q":
+        print("Goodbye!")
+        break
 
-best_index = scores.argmax()
+    query_embedding = model.encode([query])
 
-print("\nBest Match:")
-print(documents[best_index])
+    scores = cosine_similarity(
+        query_embedding,
+        doc_embeddings
+    )
 
-print("\nSimilarity:")
-print(scores[0][best_index])
+    top_k = 3
+
+    top_indices = np.argsort(
+        scores[0]
+    )[::-1][:top_k]
+
+    print("\nTop Results:\n")
+
+    for rank, idx in enumerate(
+        top_indices,
+        start=1
+    ):
+
+        print(
+            f"{rank}. {documents[idx]}"
+        )
+
+        print(
+            f"Score: {scores[0][idx]:.4f}"
+        )
+
+        print()
+
+
 
