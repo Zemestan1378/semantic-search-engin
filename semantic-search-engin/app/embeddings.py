@@ -1,17 +1,39 @@
+import pickle
 from sentence_transformers import SentenceTransformer
-
-print("Loading model...")
 
 model = SentenceTransformer(
     "all-MiniLM-L6-v2"
 )
 
-print("Model loaded!")
 
-text = "Artificial Intelligence"
+def create_embeddings(documents):
 
-embedding = model.encode(text)
+    return model.encode(documents)
 
-print("Vector length:", len(embedding))
-print("First 10 values:")
-print(embedding[:10])
+
+def save_embeddings(
+    embeddings,
+    filename
+):
+
+    with open(
+        filename,
+        "wb"
+    ) as f:
+
+        pickle.dump(
+            embeddings,
+            f
+        )
+
+
+def load_embeddings(
+    filename
+):
+
+    with open(
+        filename,
+        "rb"
+    ) as f:
+
+        return pickle.load(f)
