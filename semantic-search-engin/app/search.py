@@ -10,7 +10,13 @@ from document import load_documents
 documents = load_documents(
     "data/knowledge.txt"
 )
-doc_embeddings = model.encode(documents)
+from embeddings import (
+    load_embeddings
+)
+
+doc_embeddings = load_embeddings(
+    "data/embeddings.pkl"
+)
 
 while True:
 
