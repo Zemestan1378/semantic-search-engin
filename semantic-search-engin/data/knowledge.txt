@@ -1,9 +1,9 @@
 Artificial Intelligence is the simulation of human intelligence.
 
-Python is a programming language.
+Machine Learning is a subset of Artificial Intelligence that enables computers to learn from data.
 
-Machine Learning is a subset of AI.
+Deep Learning is a branch of Machine Learning that uses neural networks with many layers.
 
-Deep Learning uses neural networks.
+Python is a high-level programming language created by Guido van Rossum.
 
-Transformers are used in modern language models.
+ChromaDB is a vector database designed for AI applications and retrieval systems.
