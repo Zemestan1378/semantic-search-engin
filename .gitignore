@@ -1,0 +1,14 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pdf
+.cache/
+models/
+chromadb/
+*.bin
+*.pt
+*.pth
+
+db/
+data/
