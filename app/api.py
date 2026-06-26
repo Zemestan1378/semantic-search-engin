@@ -25,9 +25,7 @@ client = chromadb.PersistentClient(
     path="db"
 )
 
-collection = client.get_collection(
-    name="pdf_collection"
-)
+collection = client.get_or_create_collection("pdf_collection")
 
 # =====================
 # Model
