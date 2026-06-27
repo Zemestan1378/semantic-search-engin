@@ -10,5 +10,3 @@ chromadb/
 *.pt
 *.pth
 
-db/
-data/
