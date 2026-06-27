@@ -1,7 +1,9 @@
 from fastapi import FastAPI, Request, Form
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-
+import os
+import subprocess
+import sys
 import chromadb
 
 from transformers import (
@@ -20,13 +22,35 @@ templates = Jinja2Templates(directory="app/templates")
 # =====================
 # ChromaDB
 # =====================
+# =====================
+# ChromaDB
+# =====================
 
-client = chromadb.PersistentClient(
-    path="db"
-)
+client = chromadb.PersistentClient(path="db")
 
-collection = client.get_or_create_collection("pdf_collection")
+try:
+    collection = client.get_collection("pdf_collection")
 
+except Exception:
+
+    print("Building Chroma database...")
+
+    subprocess.run(
+        [sys.executable, "app/build_pdf_chroma.py"],
+        check=True
+    )
+
+    client = chromadb.PersistentClient(path="db")
+
+    collection = client.get_collection("pdf_collection")
+    subprocess.run(
+        ["python", "app/build_pdf_chroma.py"],
+        check=True
+    )
+
+    client = chromadb.PersistentClient(path="db")
+
+    collection = client.get_collection("pdf_collection")
 # =====================
 # Model
 # =====================
